@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Weather</title>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" href="assets/weather.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+</head>
+<body>
+<div id="container">
+	<h1>Current Weather</h1>
+	<h4><span id="city"></span></h4>
+	<div id="latandlong"></div>
+	<h1 id="weatherDisplay"></h1>
+	<h1><span id="tempDisplay"></span>&deg;<span id="convert">F</span></h1>
+
+	<figure class="icons">
+		<canvas id="clear-day" class="hide" width="128" height="128"></canvas>
+		<canvas id="clear-night" class="hide" width="128" height="128"></canvas>
+		<canvas id="partly-cloudy-day" class="hide" width="128" height="128"></canvas>
+		<canvas id="partly-cloudy-night" class="hide" width="128" height="128"></canvas>
+		<canvas id="cloudy" class="hide" width="128" height="128"></canvas>
+		<canvas id="rain" class="hide" width="128" height="128"></canvas>
+		<canvas id="sleet" class="hide" width="128" height="128"></canvas>
+		<canvas id="snow" class="hide" width="128" height="128"></canvas>
+		<canvas id="wind" class="hide" width="128" height="128"></canvas>
+		<canvas id="fog" class="hide" width="128" height="128"></canvas>
+	</figure>
+</div>
+
+<script src="https://rawgithub.com/darkskyapp/skycons/master/skycons.js"></script>
+<script src="assets/config.js"></script>
+<script type="text/javascript" src="assets/weather.js"></script>
+</body>
+</html>
