@@ -19,6 +19,36 @@ function getCity(){
     });
 };
 
+function getCity2(lati, long) {
+
+	let locationData = { latitude: lati, longitude: long };
+
+	$.ajax({
+		url: "/geocoding",
+		dataType: "json",
+		type: "GET",
+		data: locationData,
+		success: function(location) {
+			$("#city").html(location.results[0].formatted_address);
+		},
+		error: function() {
+			console.log("Onoes an error.");
+		}
+	});
+}
+
+// function getCity2 (lati, longi) {
+// 	$.post('/geocoding',
+// 	 	{
+// 			latitude: lati,
+// 			longitude : longi
+// 		},
+//     function(returnedData){
+//          console.log(returnedData);
+// });
+// }
+
+
 var darkskyKey = config.DARK_SKY_API_KEY;
 
 function getWeather(){
@@ -62,7 +92,7 @@ if (navigator.geolocation) {
   	navigator.geolocation.getCurrentPosition(function(position) {
 	    lat = position.coords.latitude.toFixed(4);
 	    lon = position.coords.longitude.toFixed(4);
-	    getCity();
+	    getCity2(lat, lon);
 	    getWeather();
   	});
 };

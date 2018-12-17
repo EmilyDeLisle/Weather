@@ -1,0 +1,28 @@
+{
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "Weather App",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EmilyDeLisle/Weather.git"
+  },
+  "keywords": [
+    "weather"
+  ],
+  "author": "Emily DeLisle",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EmilyDeLisle/Weather/issues"
+  },
+  "homepage": "https://github.com/EmilyDeLisle/Weather#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "fs": "0.0.1-security",
+    "jsdom": "^13.1.0",
+    "request": "^2.88.0"
+  }
+}
