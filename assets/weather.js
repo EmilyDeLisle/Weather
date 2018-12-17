@@ -10,14 +10,14 @@ function conversion(){
 	trueF = false;
 };
 
-var googleKey = config.GOOGLE_API_KEY;
+// var googleKey = config.GOOGLE_API_KEY;
 
-function getCity(){
-	var geocoding = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "%2C" + lon + "&language=en&result_type=locality&key=" + googleKey;
-    $.getJSON(geocoding).done(function(location) {
-        $("#city").html(location.results[0].formatted_address);
-    });
-};
+// function getCity(){
+// 	var geocoding = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "%2C" + lon + "&language=en&result_type=locality&key=" + googleKey;
+//     $.getJSON(geocoding).done(function(location) {
+//         $("#city").html(location.results[0].formatted_address);
+//     });
+// };
 
 function getCity2(lati, long) {
 
@@ -49,32 +49,61 @@ function getCity2(lati, long) {
 // }
 
 
-var darkskyKey = config.DARK_SKY_API_KEY;
+// var darkskyKey = config.DARK_SKY_API_KEY;
 
-function getWeather(){
+// function getWeather(){
+// 	$.ajax({
+// 	    headers: {"Access-Control-Allow-Origin": "true"},
+// 	    type: "GET",
+// 	    contentType: "application/json",
+// 	    dataType: "jsonp",
+// 	    url: "https://api.darksky.net/forecast/" + darkskyKey + "/" + lat + "," + lon,
+// 	    success: function(forecast){
+// 	        currentWeather = forecast.currently.icon;
+// 	        tempF = Math.round(forecast.currently.temperature);
+// 	        $("#tempDisplay").html(tempF);
+// 	        $("canvas").removeClass("show");
+// 	        $("canvas").addClass("hide");
+
+// 	        for(var i = 0; i < weather.length; i++){
+// 	          if(currentWeather === weather[i].icon){
+// 	            $("#weatherDisplay").html(weather[i].text);
+// 	            $("#" + weather[i].icon).addClass("show");
+// 	            $("body").addClass(weather[i].icon);
+// 	          	}
+// 	        }
+//       	}
+//     });
+// };
+
+function getWeather2(lati, long) {
+	let locationData = { latitude: lati, longitude: long };
+
 	$.ajax({
-	    headers: {"Access-Control-Allow-Origin": "true"},
-	    type: "GET",
-	    contentType: "application/json",
-	    dataType: "jsonp",
-	    url: "https://api.darksky.net/forecast/" + darkskyKey + "/" + lat + "," + lon,
-	    success: function(forecast){
-	        currentWeather = forecast.currently.icon;
-	        tempF = Math.round(forecast.currently.temperature);
-	        $("#tempDisplay").html(tempF);
-	        $("canvas").removeClass("show");
-	        $("canvas").addClass("hide");
+		url: "/geocoding",
+		dataType: "json",
+		type: "GET",
+		data: locationData,
+		success: function(forecast){
+			currentWeather = forecast.currently.icon;
+			tempF = Math.round(forecast.currently.temperature);
+			$("#tempDisplay").html(tempF);
+			$("canvas").removeClass("show");
+			$("canvas").addClass("hide");
 
-	        for(var i = 0; i < weather.length; i++){
-	          if(currentWeather === weather[i].icon){
-	            $("#weatherDisplay").html(weather[i].text);
-	            $("#" + weather[i].icon).addClass("show");
-	            $("body").addClass(weather[i].icon);
-	          	}
-	        }
-      	}
-    });
-};
+			for(var i = 0; i < weather.length; i++){
+				if(currentWeather === weather[i].icon){
+					$("#weatherDisplay").html(weather[i].text);
+					$("#" + weather[i].icon).addClass("show");
+					$("body").addClass(weather[i].icon);
+					}
+			}
+		},
+		error: function() {
+			console.log("Onoes an error.");
+		}
+	});
+}
 
 $("#convert").on("click", function(){
 	if(trueF === true){
@@ -93,7 +122,7 @@ if (navigator.geolocation) {
 	    lat = position.coords.latitude.toFixed(4);
 	    lon = position.coords.longitude.toFixed(4);
 	    getCity2(lat, lon);
-	    getWeather();
+	    getWeather2(lat, lon);
   	});
 };
 

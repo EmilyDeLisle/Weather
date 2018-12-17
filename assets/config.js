@@ -1,4 +1,0 @@
-var config = {
-  DARK_SKY_API_KEY : '17aae648d5a6048407f800c0b19271f0',
-  GOOGLE_API_KEY : 'AIzaSyCYWInciWRsAfcd49UlboD0gj9id7KjYSc'
-}
