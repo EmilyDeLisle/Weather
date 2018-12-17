@@ -10,19 +10,8 @@ function conversion(){
 	trueF = false;
 };
 
-// var googleKey = config.GOOGLE_API_KEY;
-
-// function getCity(){
-// 	var geocoding = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "%2C" + lon + "&language=en&result_type=locality&key=" + googleKey;
-//     $.getJSON(geocoding).done(function(location) {
-//         $("#city").html(location.results[0].formatted_address);
-//     });
-// };
-
-function getCity2(lati, long) {
-
+function getCity(lati, long) {
 	let locationData = { latitude: lati, longitude: long };
-
 	$.ajax({
 		url: "/geocoding",
 		dataType: "json",
@@ -37,48 +26,8 @@ function getCity2(lati, long) {
 	});
 }
 
-// function getCity2 (lati, longi) {
-// 	$.post('/geocoding',
-// 	 	{
-// 			latitude: lati,
-// 			longitude : longi
-// 		},
-//     function(returnedData){
-//          console.log(returnedData);
-// });
-// }
-
-
-// var darkskyKey = config.DARK_SKY_API_KEY;
-
-// function getWeather(){
-// 	$.ajax({
-// 	    headers: {"Access-Control-Allow-Origin": "true"},
-// 	    type: "GET",
-// 	    contentType: "application/json",
-// 	    dataType: "jsonp",
-// 	    url: "https://api.darksky.net/forecast/" + darkskyKey + "/" + lat + "," + lon,
-// 	    success: function(forecast){
-// 	        currentWeather = forecast.currently.icon;
-// 	        tempF = Math.round(forecast.currently.temperature);
-// 	        $("#tempDisplay").html(tempF);
-// 	        $("canvas").removeClass("show");
-// 	        $("canvas").addClass("hide");
-
-// 	        for(var i = 0; i < weather.length; i++){
-// 	          if(currentWeather === weather[i].icon){
-// 	            $("#weatherDisplay").html(weather[i].text);
-// 	            $("#" + weather[i].icon).addClass("show");
-// 	            $("body").addClass(weather[i].icon);
-// 	          	}
-// 	        }
-//       	}
-//     });
-// };
-
-function getWeather2(lati, long) {
+function getWeather(lati, long) {
 	let locationData = { latitude: lati, longitude: long };
-
 	$.ajax({
 		url: "/weather",
 		dataType: "json",
@@ -122,8 +71,8 @@ if (navigator.geolocation) {
   	navigator.geolocation.getCurrentPosition(function(position) {
 	    lat = position.coords.latitude.toFixed(4);
 	    lon = position.coords.longitude.toFixed(4);
-	    getCity2(lat, lon);
-	    getWeather2(lat, lon);
+	    getCity(lat, lon);
+	    getWeather(lat, lon);
   	});
 };
 
