@@ -3,6 +3,7 @@ const app = express();
 const fs = require("fs");
 const { JSDOM } = require('jsdom');
 const request = require("request");
+const PORT = process.env.PORT || 5000
 
 app.use("/assets", express.static("assets"));
 
@@ -43,34 +44,6 @@ app.get("/geocoding", function(req, res) {
   });
 });
 
-// var myURL = "https://api.github.com/users/jim-parry/repos";
-
-// app.get('/', function(req, res){
-
-//     let payload = "didn't change!";
-//     let options = {
-//       url: myURL,
-//       headers: {
-//         'User-Agent': 'request',
-//         'Content-Type': 'application/json',
-//       }
-//     }
-//     request(options, function(err, re, body) {
-//         if(err) {
-//           console.log(err);
-//         }
-//         payload = body;
-//         //console.log(res.header);
-//         res.setHeader("Content-Type", "application/json");
-//         res.send(payload);
-//     });
-
-// });
-
-
-
-let port = 8000;
-
-app.listen(port, function() {
-  console.log("App listening on port " + port);
+app.listen(PORT, function() {
+  console.log("App listening on port " + PORT);
 });
