@@ -80,11 +80,12 @@ function getWeather2(lati, long) {
 	let locationData = { latitude: lati, longitude: long };
 
 	$.ajax({
-		url: "/geocoding",
+		url: "/weather",
 		dataType: "json",
 		type: "GET",
 		data: locationData,
 		success: function(forecast){
+			console.log(forecast);
 			currentWeather = forecast.currently.icon;
 			tempF = Math.round(forecast.currently.temperature);
 			$("#tempDisplay").html(tempF);

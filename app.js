@@ -46,7 +46,7 @@ app.get("/weather", function(req, res) {
 
   let options = {
     url: darkskyURL,
-    headers: {"Access-Control-Allow-Origin": "true"},
+    headers: { "Access-Control-Allow-Origin": "true" },
     type: "GET",
     contentType: "application/json",
     dataType: "jsonp"
