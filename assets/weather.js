@@ -37,9 +37,21 @@ function getWeather(lati, long) {
 			console.log(forecast);
 			currentWeather = forecast.currently.icon;
 			tempF = Math.round(forecast.currently.temperature);
-			$("#tempDisplay").html(tempF);
+			$("#tempurature").html(tempF + " &deg;<span id='convert'>F</span>");
 			$("canvas").removeClass("show");
 			$("canvas").addClass("hide");
+
+			$("#convert").on("click", function(){
+				if(trueF === true){
+					conversion();
+					$("#tempDisplay").html(tempC);
+					$("#convert").html("C");
+				} else {
+					$("#tempDisplay").html(tempF);
+					$("#convert").html("F");
+					trueF = true;
+				}
+			});
 
 			for(var i = 0; i < weather.length; i++){
 				if(currentWeather === weather[i].icon){
@@ -54,18 +66,6 @@ function getWeather(lati, long) {
 		}
 	});
 }
-
-$("#convert").on("click", function(){
-	if(trueF === true){
-		conversion();
-		$("#tempDisplay").html(tempC);
-		$("#convert").html("C");
-	} else {
-		$("#tempDisplay").html(tempF);
-		$("#convert").html("F");
-		trueF = true;
-	}
-});
 
 if (navigator.geolocation) {
   	navigator.geolocation.getCurrentPosition(function(position) {
