@@ -34,10 +34,10 @@ function getWeather(lati, long) {
 		type: "GET",
 		data: locationData,
 		success: function(forecast){
-			console.log(forecast);
+			// console.log(forecast);
 			currentWeather = forecast.currently.icon;
 			tempF = Math.round(forecast.currently.temperature);
-			$("#tempurature").html(tempF + " &deg;<span id='convert'>F</span>");
+			$("#temperature").html("<span id='tempDisplay'>" + tempF + "</span> &deg;<span id='convert'>F</span>");
 			$("canvas").removeClass("show");
 			$("canvas").addClass("hide");
 
@@ -61,8 +61,8 @@ function getWeather(lati, long) {
 					}
 			}
 		},
-		error: function() {
-			console.log("Onoes an error.");
+		error: function(error) {
+			console.log(error);
 		}
 	});
 }
